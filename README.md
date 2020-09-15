@@ -9,6 +9,28 @@ Demo service deployment on Kubernetes
 
 Example: MONGODB_URI=mongodb://localhost:27017/test
 
+## Các lệnh kubectl hay dùng:
+
+```bash
+# Check các pod đang chạy
+kubectl -n <ns> get pod
+
+# Log pod đang chạy
+kubectl -n <ns> logs <pod-name>
+
+# Check các deployment
+kubectl -n <ns> get deployment
+
+# Check các service
+kubectl -n <ns> get service
+
+# Kiểm tra mô tả service
+kubectl -n <ns> describe service <svc-name>
+
+# Apply định nghĩa resource
+kubectl -n <ns> apply -f file.yaml
+```
+
 ## Task 1
 
 - Tạo namespace mang tên mình

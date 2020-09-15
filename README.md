@@ -15,12 +15,16 @@ Example: MONGODB_URI=mongodb://localhost:27017/test
 - Tạo deployment triển khai mongodb dạng container trên K8S (không cần quan tâm tới volume hay data)
 - Expose service mongodb dạng ClusterIP
 
+> Demo service trong file service.demo.yaml
+
 ## Task 2
 
 - Tạo deployment triển khai app CRUD NodeJS với image: `minhpq331/demo-service` với replica=2 
 - Kết nối app nodejs trên với thông tin kết nối mongodb service vừa triển khai ở trên.
 - Expose service CRUD trên dạng NodePort (cổng tùy chọn)
 - Truy cập IP của host ở cổng đã chọn để test thử ứng dụng
+
+> Demo service trong file service.demo.yaml
 
 ## Task 3
 
@@ -30,3 +34,5 @@ Example: MONGODB_URI=mongodb://localhost:27017/test
     + Với windows là `C:\Windows\System32\drivers\etc`
     + Với mac, linux là `/etc/hosts`
 - Truy cập app CRUD qua `http:///<tênmình>.demo.service:30000/crud` (30000 là port của nginx-ingress-controller đang chạy sẵn)
+
+> Demo ingress trong file ingress.demo.yaml

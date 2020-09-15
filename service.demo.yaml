@@ -1,0 +1,69 @@
+# ClusterIP service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-service
+spec:
+  type: ClusterIP        # Chỉ tạo Virtual IP
+  selector:
+    app: backend-1       # Label selector
+  ports:
+    - protocol: TCP      # Protocol
+      port: 80           # Port của service
+      targetPort: 3000   # Port của pod
+
+
+
+# NodePort service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-service
+spec:
+  type: NodePort         # Virtual IP + map host port
+  selector:
+    app: backend-1       # Label selector
+  ports:
+    - protocol: TCP      # Protocol
+      port: 80           # Port của service
+      targetPort: 3000   # Port của pod
+      nodePort: 30007    # Port của host (optional)
+
+
+
+# Loadbalancer service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-service
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocol: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: "443,8443"
+spec:
+  type: LoadBalancer     # Virtual IP + map host port + tạo LB
+  selector:
+    app: backend-1       # Label selector
+  ports:
+    - protocol: TCP      # Protocol
+      port: 80           # Port của service
+      targetPort: 3000   # Port của pod
+      nodePort: 30007    # Port của host (optional)
+
+
+# Headless service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-service
+spec:
+  clusterIP: None        # Không tạo Virtual IP
+  selector:
+    app: backend-1       # Label selector
+  ports:
+    - protocol: TCP      # Protocol
+      port: 80           # Port của service
+      targetPort: 3000   # Port của pod

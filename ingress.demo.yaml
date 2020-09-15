@@ -1,0 +1,27 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: demo-ingress
+spec:
+  rules:
+  - host: "app.com"               # Domain name
+    http:
+      paths:
+        - pathType: Prefix        # Loại path
+          path: "/"               # Path   
+          backend:
+            service:
+              name: frontend      # Tên service đích
+              port:
+                number: 80
+  - host: "api.app.com:30000"
+    http:
+      paths:
+        - pathType: Prefix
+          path: "/be1"
+          backend:
+            service:
+              name: backend-1
+              port:
+                number: 80

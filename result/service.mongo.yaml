@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb-svc
+spec:
+  type: ClusterIP        # Chỉ tạo Virtual IP
+  selector:
+    app: mongodb-label       # Label selector
+  ports:
+    - protocol: TCP      # Protocol
+      port: 27017        # Port của service
+      targetPort: 27017  # Port của container

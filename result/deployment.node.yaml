@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-deployment
+spec:
+  replicas: 2                  # Number of pods
+  selector:                    #
+    matchLabels:               # This selector MUST MATCH below labels
+      app: node-label          #
+
+  # Pod template
+  template:
+    metadata:
+      name: node-pod                
+      labels:
+        app: node-label
+    spec:
+      containers:                       
+        - name: api                     
+          image: minhpq331/demo-service
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
+            - name: MONGODB_URI
+              value: "mongodb://mongodb-svc:27017/test-db"

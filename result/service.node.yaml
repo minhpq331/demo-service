@@ -1,0 +1,17 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: node-svc
+spec:
+  type: NodePort        # Chỉ tạo Virtual IP
+  selector:
+    app: node-label       # Label selector
+  ports:
+    - protocol: TCP      # Protocol
+      targetPort: 3000   # Port của container
+      port: 8080         # Port của service
+      nodePort: 30007    # Port của host
+
+# Các service khác sẽ gọi   http://node-svc:8080
+# Ngoài cluster gọi         http://<ip-host>:30007

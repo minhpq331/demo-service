@@ -34,7 +34,7 @@ kubectl -n <ns> apply -f file.yaml
 ## Task 1
 
 - Tạo namespace mang tên mình
-- Tạo deployment triển khai mongodb dạng container trên K8S (không cần quan tâm tới volume hay data)
+- Tạo deployment triển khai mongodb bằng official image `mongo` dạng deployment trên K8S (không cần quan tâm tới volume hay data), template deployment xem trong bài trước
 - Expose service mongodb dạng ClusterIP
 
 > Demo service trong file service.demo.yaml
@@ -43,7 +43,7 @@ kubectl -n <ns> apply -f file.yaml
 
 - Tạo deployment triển khai app CRUD NodeJS với image: `minhpq331/demo-service` với replica=2 
 - Kết nối app nodejs trên với thông tin kết nối mongodb service vừa triển khai ở trên.
-- Expose service CRUD trên dạng NodePort (cổng tùy chọn)
+- Expose service CRUD trên dạng NodePort (cổng nodeport tùy chọn)
 - Truy cập IP của host ở cổng đã chọn để test thử ứng dụng
 
 > Demo service trong file service.demo.yaml

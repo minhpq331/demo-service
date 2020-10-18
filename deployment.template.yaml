@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-deployment
+  labels:
+    something: day-la-label-cua-deployment
+spec:
+  replicas: 1                  # Number of pods
+  selector:                    #
+    matchLabels:               # This selector MUST MATCH below labels
+      app: sidecar-v1          #
+
+  # Pod template
+  template:
+    metadata:
+      name: demo-pod                
+      labels:
+        app: sidecar-v1        # Pod labels
+    spec:
+      containers:                       
+        - name: web                     
+          image: some-image      
+          imagePullPolicy: Always       
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SOME_ENV
+              value: "hello"   # Lưu ý nháy kép ở đây không lỗi

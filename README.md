@@ -7,7 +7,7 @@ Demo service trên Kubernetes
 |    Tên biến   | Điều kiện  |           Giá trị mẫu            |      Diễn giải       |
 |---------------|------------|----------------------------------|----------------------|
 | `PORT`        | `required` | 3000                             | Cổng app lắng nghe   |
-| `MONGODB_URI` | `required` | mongodb://<host>:<port>/<dbname> | Kết nối tới mongodb` |
+| `MONGODB_URI` | `required` | `mongodb://<host>:<port>/<dbname>` | Kết nối tới mongodb` |
 
 Docker image để chạy app NodeJS: `minhpq331/demo-service`. Đã có sẵn chỉ cần pull về dùng
 
@@ -18,7 +18,7 @@ Docker image để chạy app NodeJS: `minhpq331/demo-service`. Đã có sẵn c
 kubectl -n <ns> get pod
 
 # Log pod đang chạy
-kubectl -n <ns> logs <pod-name>
+kubectl -n <ns> logs <pod-name> 
 
 # Check các deployment
 kubectl -n <ns> get deployment

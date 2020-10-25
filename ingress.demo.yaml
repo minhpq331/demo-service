@@ -1,8 +1,12 @@
 ---
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: demo-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/add-base-url: "true"
 spec:
   rules:
   - host: "app.com"               # Domain name
@@ -11,17 +15,13 @@ spec:
         - pathType: Prefix        # Loại path
           path: "/"               # Path   
           backend:
-            service:
-              name: frontend      # Tên service đích
-              port:
-                number: 80
-  - host: "api.app.com:30000"
+            serviceName: frontend-1
+            servicePort: 8080
+  - host: "api.app.com"
     http:
       paths:
         - pathType: Prefix
-          path: "/be1"
+          path: "/be/?(.*)"               # Path   
           backend:
-            service:
-              name: backend-1
-              port:
-                number: 80
+            serviceName: backend-1
+            servicePort: 8080
